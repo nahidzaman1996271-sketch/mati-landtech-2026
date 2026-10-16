@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Bangladesh Bottle Green Background Circle -->
+  <circle cx="32" cy="32" r="30" fill="#006a4e" stroke="#f59e0b" stroke-width="2"/>
+  
+  <!-- Red Sun Offset Slightly to the Hoist/Left as per National Flag Specifications -->
+  <circle cx="28" cy="32" r="13" fill="#f42a41"/>
+</svg>

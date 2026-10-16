@@ -6,9 +6,15 @@
   <title>Mati (মাটি): Check a plot before you buy | Bangladesh Land Records</title>
   <meta name="description" content="Mati lets buyers in Bangladesh check a plot's owner, mutation history, court cases and khas status, and verify a deed has not been altered.">
   <meta name="theme-color" content="#1e3522">
+  <link rel="icon" type="image/svg+xml" href="gemini-svg.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Preload primary local hero images -->
+  <link rel="preload" as="image" href="hero-1.jpg">
+  <link rel="preload" as="image" href="hero-2.jpg">
+  <link rel="preload" as="image" href="hero-3.jpg">
 
   <style>
     :root {
@@ -147,40 +153,98 @@
       color: var(--bd-gold);
     }
 
-    /* Demo Notice Bar */
-    .demo {
-      margin: 0;
-      background: #ead7b3;
-      color: var(--bd-earth);
-      text-align: center;
-      font-size: 0.88rem;
-      padding: 0.45rem 1rem;
-      border-bottom: 1px solid var(--border-warm);
-    }
-
-    /* ==========================================================================
-       HERO SECTION — Uses your "Golden Hour Rice Fields.png" as primary background!
-       ========================================================================== */
+    /* Hero section and auto-fitting background layers */
     .hero {
       position: relative;
       background-color: #1f2e1b;
-      background-image: 
-        linear-gradient(
-          92deg, 
-          rgba(20, 32, 18, 0.90) 0%, 
-          rgba(38, 28, 14, 0.72) 46%, 
-          rgba(245, 158, 11, 0.18) 100%
-        ),
-        url('Golden Hour Rice Fields.png'),
-        url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1920&q=85');
-      background-size: cover;
-      background-position: center 42%;
+      background-image: linear-gradient(
+        92deg,
+        rgba(20, 32, 18, 0.90) 0%,
+        rgba(38, 28, 14, 0.75) 46%,
+        rgba(24, 46, 28, 0.85) 100%
+      );
       color: #fff9ed;
       padding: 4.8rem 0 7rem;
       overflow: hidden;
     }
 
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Auto-fit rule: scales any aspect ratio smoothly while keeping the horizon centered */
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center 52%;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      will-change: opacity;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+    }
+
+    /* Default CSS slides (work immediately even before JS runs) */
+    .hero-slide-1 {
+      background-image:
+        linear-gradient(
+          92deg,
+          rgba(20, 32, 18, 0.76) 0%,
+          rgba(38, 28, 14, 0.54) 48%,
+          rgba(245, 158, 11, 0.14) 100%
+        ),
+        url('hero-1.jpg'),
+        url('images/hero-1.jpg'),
+        url('images/img_2.jpg'),
+        url('images/img_2.png');
+    }
+
+    .hero-slide-2 {
+      background-image:
+        linear-gradient(
+          92deg,
+          rgba(16, 26, 15, 0.84) 0%,
+          rgba(28, 22, 12, 0.66) 52%,
+          rgba(20, 32, 18, 0.45) 100%
+        ),
+        url('hero-2.jpg'),
+        url('images/hero-2.jpg'),
+        url('images/img_3.jpg'),
+        url('images/img_3.png');
+    }
+
+    .hero-slide-3 {
+      background-image:
+        linear-gradient(
+          92deg,
+          rgba(20, 32, 18, 0.76) 0%,
+          rgba(38, 28, 14, 0.54) 48%,
+          rgba(245, 158, 11, 0.14) 100%
+        ),
+        url('hero-3.jpg'),
+        url('images/hero-3.jpg'),
+        url('images/img_5.jpg'),
+        url('images/img_5.png');
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-slide {
+        transition: none;
+      }
+    }
+
     .hero-grid {
+      position: relative;
+      z-index: 1;
       display: grid;
       grid-template-columns: 1.12fr 0.88fr;
       gap: 2.5rem;
@@ -215,7 +279,7 @@
       font-size: clamp(2.35rem, 4.5vw, 3.65rem);
       color: #ffffff;
       margin-bottom: 0.45rem;
-      text-shadow: 0 3px 16px rgba(0, 0, 0, 0.5);
+      text-shadow: 0 3px 16px rgba(0, 0, 0, 0.65);
     }
 
     .hero p[lang="bn"] {
@@ -223,7 +287,7 @@
       font-size: 1.4rem;
       font-weight: 700;
       margin: 0 0 0.9rem;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.65);
     }
 
     .hero .lead {
@@ -231,7 +295,7 @@
       font-size: 1.1rem;
       max-width: 50ch;
       margin-bottom: 1.65rem;
-      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.65);
     }
 
     .hero-actions {
@@ -281,9 +345,9 @@
     }
 
     .hero .btn.alt {
-      background: rgba(20, 32, 18, 0.65);
+      background: rgba(20, 32, 18, 0.72);
       color: #fff9ed;
-      border-color: rgba(255, 248, 235, 0.7);
+      border-color: rgba(255, 248, 235, 0.75);
       backdrop-filter: blur(6px);
     }
 
@@ -327,14 +391,19 @@
       font-weight: 600;
     }
 
-    /* Top-down aerial plot texture inside the Mouza card */
+    /* Local plot texture inside the Mouza card */
     .plot-visual {
       border-radius: 9px;
       overflow: hidden;
       background-color: #274223;
-      background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=80');
+      background-image:
+        url('hero-3.jpg'),
+        url('images/hero-3.jpg'),
+        url('images/img_5.jpg'),
+        url('images/img_5.png');
       background-size: cover;
-      background-position: center;
+      background-position: center 55%;
+      background-repeat: no-repeat;
       border: 1px solid rgba(255, 255, 255, 0.2);
       position: relative;
     }
@@ -381,6 +450,7 @@
       width: 100%;
       height: 58px;
       display: block;
+      z-index: 1;
     }
 
     /* Main Content Sections */
@@ -408,10 +478,66 @@
       font-size: 1.15rem;
     }
 
+    /* Verify a deed section: auto-fit fixed hero-3.jpg with dark-green overlay */
     .deed-s {
-      background: #ecdcbb;
+      background-color: #182e1c;
+      background-image:
+        linear-gradient(
+          180deg,
+          rgba(20, 42, 24, 0.78) 0%,
+          rgba(16, 34, 19, 0.84) 100%
+        ),
+        url('hero-3.jpg'),
+        url('images/hero-3.jpg'),
+        url('images/img_5.jpg'),
+        url('images/img_5.png');
+      background-size: cover;
+      background-position: center 52%;
+      background-repeat: no-repeat;
       border-top: 1px solid var(--border-warm);
       border-bottom: 1px solid var(--border-warm);
+    }
+
+    .deed-s h2 {
+      color: #fff9ed;
+    }
+
+    .deed-s .bn-sub {
+      color: var(--bd-gold-soft);
+    }
+
+    .deed-s .wrap > p {
+      color: #f6ebd4;
+    }
+
+    /* How it works section: auto-fit fixed hero-1.jpg with dark overlay */
+    #how {
+      background-color: #1f1a14;
+      background-image:
+        linear-gradient(
+          180deg,
+          rgba(22, 18, 14, 0.76) 0%,
+          rgba(18, 24, 16, 0.82) 100%
+        ),
+        url('hero-1.jpg'),
+        url('images/hero-1.jpg'),
+        url('images/img_2.jpg'),
+        url('images/img_2.png');
+      background-size: cover;
+      background-position: center 52%;
+      background-repeat: no-repeat;
+    }
+
+    #how h2 {
+      color: #fff9ed;
+    }
+
+    #how .bn-sub {
+      color: var(--bd-gold-soft);
+    }
+
+    #how .note {
+      color: #e2d4ba;
     }
 
     /* Forms & Inputs */
@@ -527,6 +653,7 @@
       padding: 1.5rem;
       box-shadow: 0 6px 20px rgba(44, 24, 13, 0.07);
       margin-top: 1rem;
+      color: var(--text-main);
     }
 
     /* Plot Output Details Grid */
@@ -599,9 +726,15 @@
       height: auto;
       border-radius: 6px;
       margin-bottom: 0.45rem;
-      background-image: url('Golden Hour Rice Fields.png'), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=75');
+      background-color: #274223;
+      background-image:
+        url('hero-1.jpg'),
+        url('images/hero-1.jpg'),
+        url('images/img_2.jpg'),
+        url('images/img_2.png');
       background-size: cover;
-      background-position: center;
+      background-position: center 55%;
+      background-repeat: no-repeat;
     }
 
     dl {
@@ -645,6 +778,7 @@
       border-top: 4px solid var(--bd-gold);
       border-radius: 10px;
       padding: 1.35rem;
+      color: var(--text-main);
     }
 
     .steps h3 {
@@ -709,11 +843,25 @@
       color: #a89478;
     }
 
-    /* Responsive Mobile Layout */
+    footer .credits {
+      grid-column: 1 / -1;
+      margin: -1.25rem 0 0;
+      font-size: 0.82rem;
+      color: #a89478;
+    }
+
+    /* Responsive Mobile Layout & Mobile Photo Auto-Fit */
     @media (max-width: 840px) {
       .hero-grid,
       .plot-result-grid {
         grid-template-columns: 1fr;
+      }
+
+      /* Keep horizon & paddy field balanced on tall phone screens */
+      .hero-slide,
+      .deed-s,
+      #how {
+        background-position: center 60%;
       }
 
       #menu {
@@ -766,13 +914,15 @@
     </div>
   </header>
 
-  <p class="demo" role="note">
-    <strong>100% Synthetic Demo Data:</strong> Every plot, synthetic owner ID (e.g., Demo Citizen A), and deed on this site is fictional for the LandTech 2026 hackathon. No real people's names or real land records are used.
-  </p>
-
   <main>
-    <!-- Hero with your Golden Hour Rice Fields.png + Interactive Mouza Card -->
+    <!-- Hero with stacked cross-fading background layers + Interactive Mouza Card -->
     <div class="hero">
+      <div class="hero-bg" id="hero-bg" aria-hidden="true">
+        <div class="hero-slide hero-slide-1 active"></div>
+        <div class="hero-slide hero-slide-2"></div>
+        <div class="hero-slide hero-slide-3"></div>
+      </div>
+
       <div class="wrap hero-grid">
         <div class="hero-content">
           <div class="bd-pill">
@@ -805,7 +955,7 @@
                 <rect width="420" height="260" fill="rgba(20, 38, 18, 0.42)"/>
                 <rect width="420" height="260" fill="url(#soil-grid)"/>
 
-                <!-- All 7 Bangladeshi Plots (Ail / আইল Boundaries) - Every Plot is Hoverable & Clickable! -->
+                <!-- All 7 Bangladeshi Plots (Ail / আইল Boundaries) -->
                 <polygon class="mouza-poly" data-id="KHL-DUM-0207" points="0,0 150,0 135,95 0,110" fill="rgba(58, 95, 55, 0.45)" stroke="#d9e6cc" stroke-width="1.5"/>
                 <text x="32" y="55" fill="#eef5e6" font-size="12" font-family="'Hind Siliguri', sans-serif" pointer-events="none">দাগ ২০৭ (খুলনা)</text>
 
@@ -824,11 +974,11 @@
                 <text id="hero-svg-dag" x="148" y="138" fill="#ffffff" font-weight="bold" font-size="14" font-family="'Hind Siliguri', sans-serif" pointer-events="none">দাগ ১৪২ (Selected)</text>
                 <text id="hero-svg-sub" x="142" y="160" fill="#ffe8c2" font-size="11.5" font-family="monospace" pointer-events="none">DHK-SAV-0142 • ১২.৫ শতক</text>
 
-                <!-- Dag 143 (Fixed: Added class="mouza-poly", data-id, and pointer-events="none") -->
+                <!-- Dag 143 -->
                 <polygon class="mouza-poly" data-id="BAR-AMT-0143" points="290,85 420,120 420,260 275,205" fill="rgba(58, 95, 55, 0.45)" stroke="#d9e6cc" stroke-width="1.5"/>
                 <text x="322" y="180" fill="#eef5e6" font-size="12" font-family="'Hind Siliguri', sans-serif" pointer-events="none">দাগ ১৪৩ (বরিশাল)</text>
 
-                <!-- Dag 146 (Fixed: Added class="mouza-poly", data-id, and pointer-events="none") -->
+                <!-- Dag 146 -->
                 <polygon class="mouza-poly" data-id="MYM-TRL-0146" points="125,195 275,205 265,260 120,260" fill="rgba(46, 74, 43, 0.5)" stroke="#d9e6cc" stroke-width="1.5"/>
                 <text x="160" y="238" fill="#eef5e6" font-size="11" font-family="'Hind Siliguri', sans-serif" pointer-events="none">দাগ ১৪৬ (ময়মনসিংহ)</text>
               </svg>
@@ -951,12 +1101,129 @@
         </ul>
       </div>
       <p class="copy">&copy; <span id="yr">2026</span> Mati (মাটি). Built for LandTech 2026, Daffodil International University.</p>
+      <p class="credits">Photos: Kresna Arya, Mohd Nasiruddin Mohd Nasir and Yosafat Herdian on Unsplash</p>
     </div>
   </footer>
 
   <!-- All JavaScript Logic Included Here -->
   <script>
     (function () {
+      // =========================================================================
+      // 0. HERO ROTATION & AUTO-FIT IMAGE SETTINGS (Edit speed or add photos here)
+      // =========================================================================
+      const ROTATION_INTERVAL_MS = 3000; // 3000 = 3 seconds per photo
+
+      // Each entry is a slide. It tries the first path that exists in your folder.
+      // To add a 4th or 5th photo, just add another array line like: ['hero-4.jpg', 'images/img_4.jpg']
+      const HERO_SLIDE_CANDIDATES = [
+        { paths: ['hero-1.jpg', 'images/hero-1.jpg', 'images/img_2.jpg', 'images/img_2.png'], bright: false },
+        { paths: ['hero-2.jpg', 'images/hero-2.jpg', 'images/img_3.jpg', 'images/img_3.png'], bright: true  },
+        { paths: ['hero-3.jpg', 'images/hero-3.jpg', 'images/img_5.jpg', 'images/img_5.png'], bright: false },
+        { paths: ['images/img_1.jpg', 'images/img_1.png'], bright: false },
+        { paths: ['images/img_4.jpg', 'images/img_4.png'], bright: false }
+      ];
+
+      const heroBg = document.getElementById('hero-bg');
+      const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      let slides = document.querySelectorAll('.hero-slide');
+      let activeSlideIndex = 0;
+      let slideTimer = null;
+
+      // Helper: test which local image file actually exists without console errors
+      function findFirstWorkingPath(paths) {
+        return new Promise(resolve => {
+          let idx = 0;
+          function tryNext() {
+            if (idx >= paths.length) {
+              resolve(null);
+              return;
+            }
+            const currentPath = paths[idx++];
+            const img = new Image();
+            img.onload = () => resolve(currentPath);
+            img.onerror = tryNext;
+            img.src = currentPath;
+          }
+          tryNext();
+        });
+      }
+
+      // Automatically build slides for any extra photos found in HERO_SLIDE_CANDIDATES
+      async function initDynamicSlides() {
+        const resolvedSlides = [];
+        for (let i = 0; i < HERO_SLIDE_CANDIDATES.length; i++) {
+          const foundPath = await findFirstWorkingPath(HERO_SLIDE_CANDIDATES[i].paths);
+          if (foundPath) {
+            resolvedSlides.push({
+              path: foundPath,
+              bright: HERO_SLIDE_CANDIDATES[i].bright
+            });
+          }
+        }
+
+        // If at least one local image was found, rebuild the slide layers cleanly
+        if (resolvedSlides.length > 0 && heroBg) {
+          heroBg.innerHTML = '';
+          resolvedSlides.forEach((item, index) => {
+            const div = document.createElement('div');
+            div.className = 'hero-slide' + (index === 0 ? ' active' : '');
+            const overlay = item.bright
+              ? 'linear-gradient(92deg, rgba(16, 26, 15, 0.84) 0%, rgba(28, 22, 12, 0.66) 52%, rgba(20, 32, 18, 0.45) 100%)'
+              : 'linear-gradient(92deg, rgba(20, 32, 18, 0.76) 0%, rgba(38, 28, 14, 0.54) 48%, rgba(245, 158, 11, 0.14) 100%)';
+            div.style.backgroundImage = `${overlay}, url('${item.path}')`;
+            heroBg.appendChild(div);
+          });
+          slides = heroBg.querySelectorAll('.hero-slide');
+          activeSlideIndex = 0;
+        }
+      }
+
+      function showNextSlide() {
+        if (slides.length < 2) return;
+        slides[activeSlideIndex].classList.remove('active');
+        activeSlideIndex = (activeSlideIndex + 1) % slides.length;
+        slides[activeSlideIndex].classList.add('active');
+      }
+
+      function startRotation() {
+        if (reducedMotionQuery.matches || document.hidden || slideTimer || slides.length < 2) {
+          return;
+        }
+        slideTimer = window.setInterval(showNextSlide, ROTATION_INTERVAL_MS);
+      }
+
+      function stopRotation() {
+        if (slideTimer) {
+          window.clearInterval(slideTimer);
+          slideTimer = null;
+        }
+      }
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          stopRotation();
+        } else {
+          startRotation();
+        }
+      });
+
+      if (reducedMotionQuery.addEventListener) {
+        reducedMotionQuery.addEventListener('change', e => {
+          if (e.matches) {
+            stopRotation();
+            slides.forEach((s, idx) => s.classList.toggle('active', idx === 0));
+            activeSlideIndex = 0;
+          } else {
+            startRotation();
+          }
+        });
+      }
+
+      initDynamicSlides().then(() => {
+        startRotation();
+      });
+      startRotation();
+
       // 1. Sample Bangladeshi Plot Database (100% Synthetic Non-Human Identifiers)
       const PLOTS = {
         "DHK-SAV-0142": {
