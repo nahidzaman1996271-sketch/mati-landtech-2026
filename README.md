@@ -8,7 +8,7 @@ A web prototype that lets a buyer check a land plot and verify a deed before pay
 - **Problem:** P5 (Check Before You Buy), with deed hashing from P2 (Verify Deeds & Ownership)
 - **Team:** [Team name] | [Student 1 (Team Leader)], [Student 2]
 - **Mentors:** [Faculty mentor], [Industry mentor]
-- **Live prototype:** https://YOUR-USERNAME.github.io/YOUR-REPO/
+- **Live prototype:**https://nahidzaman1996271-sketch.github.io/mati-landtech-2026/
 - **Demo video:** [YouTube link]
 
 All data in this project is made up. See "Data and rule compliance" below.
