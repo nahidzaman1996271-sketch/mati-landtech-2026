@@ -6,9 +6,9 @@ A web prototype that lets a buyer check a land plot and verify a deed before pay
 
 - **Track:** Digital Land Records, Verification & Digitization
 - **Problem:** P5 (Check Before You Buy), with deed hashing from P2 (Verify Deeds & Ownership)
-- **Team:** [Team name] | [Student 1 (Team Leader)], [Student 2]
-- **Mentors:** [Faculty mentor], [Industry mentor]
-- **Live prototype:**https://nahidzaman1996271-sketch.github.io/mati-landtech-2026/
+- **Team:** Team Mati | Nahid Ibn Zaman (Team Leader), Md. Rasel Hasan Sabuj
+- **Mentors:** Rubayed All Islam (faculty), Md Jannatul Nayem (industry)
+- **Live prototype:** https://nahidzaman1996271-sketch.github.io/mati-landtech-2026/
 - **Demo video:** [YouTube link]
 
 All data in this project is made up. See "Data and rule compliance" below.
@@ -31,7 +31,6 @@ Many land disputes in Bangladesh start with fake deeds, old records that do not 
 - Bangla and English labels using land terms such as মৌজা, দাগ, খতিয়ান, ই-নামজারি, খাস জমি and সাফ কবলা দলিল
 - A schematic mouza map with clickable plots (not to scale, not real survey data)
 - A "Demo data" banner on every page
-- English / বাংলা language switch; the choice is remembered in the browser
 - A hero background that cross-fades between three rice-field photos every few seconds
 - Mobile menu, custom 404 page and favicon; layout tested for phones
 
@@ -136,3 +135,6 @@ These are general rice-field photos. They are used only as decoration and do not
 - Role-based sign-in for officers and banks
 - OCR for scanned Bangla khatians (problem P1)
 
+## Changes after Round 1
+
+(List changes here before the Final Round.)
