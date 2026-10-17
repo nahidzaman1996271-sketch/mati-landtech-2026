@@ -1211,14 +1211,47 @@
 
     /* Footer */
     footer {
+      position: relative;
+      overflow: hidden;
       background: linear-gradient(180deg, #1b2819 0%, #17110b 100%);
       color: #d9c6aa;
-      padding: 3rem 0 2rem;
+      padding: 3.2rem 0 2.2rem;
       font-size: 0.95rem;
       border-top: 3px solid var(--bd-gold);
     }
 
+    /* Jatiyo Sriti Shoudho (National Martyrs' Memorial) Architectural Silhouette Watermark */
+    .footer-watermark {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(820px, 94vw);
+      height: 100%;
+      pointer-events: none;
+      user-select: none;
+      z-index: 1;
+      opacity: 0.18;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      transition: opacity 0.3s ease;
+    }
+
+    footer:hover .footer-watermark {
+      opacity: 0.26;
+    }
+
+    .footer-watermark svg {
+      width: 100%;
+      height: auto;
+      max-height: 95%;
+      display: block;
+    }
+
     footer .wrap {
+      position: relative;
+      z-index: 2;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 2rem;
@@ -3578,6 +3611,75 @@
   </main>
 
   <footer id="contact">
+    <!-- Jatiyo Sriti Shoudho (National Martyrs' Memorial) Architectural Silhouette Watermark -->
+    <div class="footer-watermark" aria-hidden="true">
+      <svg viewBox="0 0 1000 540" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet">
+        <defs>
+          <!-- Gradients for realistic architectural lighting -->
+          <linearGradient id="ftLightFacet" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#fff4df" stop-opacity="0.32" />
+            <stop offset="100%" stop-color="#fff4df" stop-opacity="0.10" />
+          </linearGradient>
+          <linearGradient id="ftShadeFacet" x1="100%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#dfd2b5" stop-opacity="0.20" />
+            <stop offset="100%" stop-color="#dfd2b5" stop-opacity="0.05" />
+          </linearGradient>
+          <linearGradient id="ftSpireLight" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.45" />
+            <stop offset="100%" stop-color="#fff4df" stop-opacity="0.18" />
+          </linearGradient>
+          <linearGradient id="ftSpireShade" x1="100%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#fff4df" stop-opacity="0.30" />
+            <stop offset="100%" stop-color="#dfd2b5" stop-opacity="0.10" />
+          </linearGradient>
+        </defs>
+
+        <!-- Stepped Plinth / Reflection Pool Base Terraces -->
+        <rect x="20" y="514" width="960" height="7" rx="1.5" fill="rgba(255, 244, 223, 0.22)" />
+        <rect x="50" y="506" width="900" height="8" rx="1.5" fill="rgba(255, 244, 223, 0.30)" />
+        <rect x="110" y="498" width="780" height="8" rx="1.5" fill="rgba(255, 244, 223, 0.40)" />
+
+        <!-- Pair 7 (Outermost Wings, Lowest Apex) -->
+        <polygon points="500,465 40,498 150,498" fill="url(#ftLightFacet)" stroke="rgba(255, 244, 223, 0.35)" stroke-width="1.2" />
+        <polygon points="500,465 960,498 850,498" fill="url(#ftShadeFacet)" stroke="rgba(255, 244, 223, 0.35)" stroke-width="1.2" />
+
+        <!-- Pair 6 -->
+        <polygon points="500,405 150,498 250,498" fill="url(#ftLightFacet)" stroke="rgba(255, 244, 223, 0.40)" stroke-width="1.2" />
+        <polygon points="500,405 850,498 750,498" fill="url(#ftShadeFacet)" stroke="rgba(255, 244, 223, 0.40)" stroke-width="1.2" />
+
+        <!-- Pair 5 -->
+        <polygon points="500,335 250,498 335,498" fill="url(#ftLightFacet)" stroke="rgba(255, 244, 223, 0.45)" stroke-width="1.2" />
+        <polygon points="500,335 750,498 665,498" fill="url(#ftShadeFacet)" stroke="rgba(255, 244, 223, 0.45)" stroke-width="1.2" />
+
+        <!-- Pair 4 -->
+        <polygon points="500,260 335,498 395,498" fill="url(#ftLightFacet)" stroke="rgba(255, 244, 223, 0.50)" stroke-width="1.3" />
+        <polygon points="500,260 665,498 605,498" fill="url(#ftShadeFacet)" stroke="rgba(255, 244, 223, 0.50)" stroke-width="1.3" />
+
+        <!-- Pair 3 -->
+        <polygon points="500,180 395,498 440,498" fill="url(#ftLightFacet)" stroke="rgba(255, 244, 223, 0.55)" stroke-width="1.3" />
+        <polygon points="500,180 605,498 560,498" fill="url(#ftShadeFacet)" stroke="rgba(255, 244, 223, 0.55)" stroke-width="1.3" />
+
+        <!-- Pair 2 -->
+        <polygon points="500,100 440,498 475,498" fill="url(#ftLightFacet)" stroke="rgba(255, 244, 223, 0.60)" stroke-width="1.4" />
+        <polygon points="500,100 560,498 525,498" fill="url(#ftShadeFacet)" stroke="rgba(255, 244, 223, 0.60)" stroke-width="1.4" />
+
+        <!-- Pair 1 (Central Spire - Highest Apex) -->
+        <polygon points="500,15 475,498 500,498" fill="url(#ftSpireLight)" stroke="rgba(255, 244, 223, 0.75)" stroke-width="1.5" />
+        <polygon points="500,15 525,498 500,498" fill="url(#ftSpireShade)" stroke="rgba(255, 244, 223, 0.75)" stroke-width="1.5" />
+
+        <!-- Central Arch Opening Shadow (Architectural Depth) -->
+        <polygon points="500,370 472,498 528,498" fill="rgba(10, 20, 12, 0.75)" stroke="rgba(255, 244, 223, 0.3)" stroke-width="1" />
+
+        <!-- Central Vertical Spine Ridge Line -->
+        <line x1="500" y1="15" x2="500" y2="370" stroke="rgba(255, 255, 255, 0.95)" stroke-width="2" />
+        <line x1="500" y1="370" x2="500" y2="498" stroke="rgba(255, 255, 255, 0.4)" stroke-width="1.2" stroke-dasharray="3,3" />
+
+        <!-- Subtle Horizon Perspective Ground Radiations -->
+        <line x1="40" y1="498" x2="0" y2="520" stroke="rgba(255, 244, 223, 0.2)" stroke-width="1" />
+        <line x1="960" y1="498" x2="1000" y2="520" stroke="rgba(255, 244, 223, 0.2)" stroke-width="1" />
+      </svg>
+    </div>
+
     <div class="wrap">
       <div>
         <a class="logo" href="#top">Mati <span lang="bn">মাটি</span></a>
