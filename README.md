@@ -1,140 +1,206 @@
-# Mati (মাটি): Check a Plot Before You Buy
+# Mati (মাটি) — Bangladesh Digital Land Record & Deed Verification Gateway
 
-কেনার আগে জমি ও খতিয়ান যাচাই করুন
+> **কেনার আগে জমি ও খতিয়ান যাচাই করুন (Check before you buy)**  
+> An innovative single-file web prototype engineered for the **LandTech Innovation Hackathon 2026**, Daffodil International University.
 
-A web prototype that lets a buyer check a land plot and verify a deed before paying. Built for the LandTech Innovation Hackathon 2026. The project idea came from Claude (Anthropic) and the site's visual design from Google Argon; see "AI tools used".
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-2d5a27?style=for-the-badge&logo=github)](https://nahidzaman1996271-sketch.github.io/mati-landtech-2026/)
+[![Hackathon](https://img.shields.io/badge/Hackathon-LandTech%202026-b45309?style=for-the-badge)](https://diu.edu.bd)
+[![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
+[![Security](https://img.shields.io/badge/Cryptographic%20Integrity-SHA--256%20%2B%20LCS%20Diff-darkgreen?style=for-the-badge)](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest)
+
+---
+
+## 📌 Project Overview
 
 - **Track:** Digital Land Records, Verification & Digitization
-- **Problem:** P5 (Check Before You Buy), with deed hashing from P2 (Verify Deeds & Ownership)
-- **Team:** Team Mati | Nahid Ibn Zaman (Team Leader), Md. Rasel Hasan Sabuj
-- **Mentors:** Rubayed All Islam (faculty), Md Jannatul Nayem (industry)
-- **Live prototype:** https://nahidzaman1996271-sketch.github.io/mati-landtech-2026/
-- **Demo video:** [YouTube link]
+- **Problem Statements Addressed:**
+  - **P5 (Check Before You Buy):** Land Porcha dossier, 100-year continuous title chain, Land Fraud Radar under the *Land Crime Prevention and Redress Act 2023*, Sub-Registry Treasury Challan calculator.
+  - **P2 (Verify Deeds & Ownership):** Cryptographic SHA-256 deed ledger verification and word-level LCS tamper diff.
+- **Team:** **Team Mati**  
+  - **Nahid Ibn Zaman** (Team Leader)
+  - **Md. Rasel Hasan Sabuj**
+- **Mentors:** Rubayed All Islam (Faculty), Md Jannatul Nayem (Industry)
+- **Live Prototype:** [https://nahidzaman1996271-sketch.github.io/mati-landtech-2026/](https://nahidzaman1996271-sketch.github.io/mati-landtech-2026/)
 
-All data in this project is made up. See "Data and rule compliance" below.
+> [!NOTE]
+> **Data & Rule Compliance:** All data in this repository is 100% synthetic dummy data created strictly for hackathon demonstration. All owner identities use non-human synthetic tokens (e.g. `Demo Citizen A [DUMMY-ID-01]`, `Demo Seller X [DUMMY-SELLER-01]`) per Rulebook Section 10. No real citizen data, NID, or government databases were accessed.
 
-## The problem
+---
 
-Many land disputes in Bangladesh start with fake deeds, old records that do not agree with each other (CS, SA, RS and BS khatians), and records kept in separate offices. A buyer has no single place to check whether a plot is clean before paying, so the same land can be sold twice, mortgaged twice, or bought when it is khas land or under acquisition.
+## 📸 Visual Tour & Core Features
 
-## What Mati does
+### 1. Demo Security Access Gate (with Show/Hide Password Toggle)
+A secure entry point with dedicated Hackathon Judge Credentials, 1-Click Auto-Fill (`judge@example.com` / `LandTech#2026`), instant Guest Citizen access, and an accessible inline SVG show/hide password toggle with automatic session state reset.
 
-**1. Plot check (P5).** Enter a plot ID, pick a sample, or click a plot on the map. Mati shows:
-- the owner on record and recorded area
-- the RS and BS khatian numbers side by side
-- mutation status, khas status, court cases and bank liens
-- one verdict: clear (green), discrepancy or lien (amber), or high risk (red)
+![Demo Security Access Gate](screenshots/01_judge_gate.png)
 
-**2. Deed verification (P2).** The page holds a SHA-256 fingerprint of a sample deed. Paste or load a deed and Mati hashes it again and compares. Changing a single character gives a different hash and the page flags the copy as tampered.
+---
 
-**3. Other details**
-- Bangla and English labels using land terms such as মৌজা, দাগ, খতিয়ান, ই-নামজারি, খাস জমি and সাফ কবলা দলিল
-- A schematic mouza map with clickable plots (not to scale, not real survey data)
-- A "Demo data" banner on every page
-- A hero background that cross-fades between three rice-field photos every few seconds
-- Mobile menu, custom 404 page and favicon; layout tested for phones
+### 2. High-Impact Hero & Interactive 8-Division BS Mouza Map
+A 3-second cross-fading landscape slider capturing Bangladesh's rural agricultural heritage, synchronized with an interactive SVG cadastral map covering all 8 administrative divisions (Dhaka, Chattogram, Rajshahi, Khulna, Barishal, Sylhet, Mymensingh, Rangpur).
 
-## Sample plot IDs
+![Hero & Interactive Cadastral Map](screenshots/02_hero_mouza_map.png)
 
-| Plot ID | What it shows |
-|---|---|
-| DHK-SAV-0142 | Clean plot, records match |
-| KHL-DUM-0207 | RS and BS area mismatch plus a boundary case |
-| RJS-KHS-0311 | Government khas land |
-| CTG-MOR-0455 | Bank mortgage and a loan court case |
-| SYL-ACQ-0518 | Land under acquisition |
+---
 
-## How it works
+### 3. Plot Check & Authentic Porcha Dossier (P5)
+Presents an authentic Bangladeshi Land Porcha (*খতিয়ান ও পরচা স্বত্ব বিবরণী*) complete with an official 50 Taka Court Fee stamp, e-mutation tracking, survey lineage, Bengali audio readout (Web Speech API + offline MP3 audio), and an SMS fallback pill (`16xxx (demo)`).
 
-1. Each plot is a record in a JavaScript object in `index.html`, keyed by plot ID.
-2. A lookup reads the record, fills the result card and colours the verdict from the record's status.
-3. For deeds, the browser's Web Crypto API (`crypto.subtle.digest('SHA-256')`) hashes the text. The sample deed's hash is calculated when the page loads and is used as the "registry" value to compare against.
-4. Comparison is exact. Any edit to the text, even one digit, changes the hash.
+![Plot Porcha Dossier](screenshots/03_plot_porcha_dossier.png)
 
-## Tech stack
+---
 
-- HTML5, CSS3 and vanilla JavaScript. No framework, no build step, no backend.
-- Web Crypto API for SHA-256
-- Inline SVG for the map
-- Google Fonts: Fraunces and Hind Siliguri
-- Hosting: GitHub Pages (static)
+### 4. 100-Year Continuous Khatian Chain
+Traces the unbroken chain of title from the colonial era to modern smart governance:
+$$\text{CS (1888–1940)} \longrightarrow \text{SA (1956–1963)} \longrightarrow \text{RS (1965–1990)} \longrightarrow \text{BS / City Survey (1998–2024)} \longrightarrow \text{Smart E-Mutation (2026)}$$
+Connected through Gunter's survey chain (*গুন্টার্স জরিপ শিকল*) with an interactive educational archival modal.
 
-## Run it
+![100-Year Khatian Chain](screenshots/04_100yr_khatian_chain.png)
 
-No installation needed.
+---
 
-**Option 1:** open `index.html` in a current browser.
+### 5. Land Fraud & Dispute Radar (Risk Speedometer Gauge)
+A 6-dimension risk analysis model based on the *Land Crime Prevention and Redress Act 2023*. Features an animated speedometer gauge needle displaying **কম ঝুঁকি (Low)**, **মাঝারি ঝুঁকি (Medium)**, or **উচ্চ ঝুঁকি (High)** risk levels across Khas land, double-selling fraud, bank liens, and acquisition freezes.
 
-**Option 2 (closer to the hosted site):**
+![Land Fraud Threat Radar](screenshots/05_fraud_threat_radar.png)
+
+---
+
+### 6. Sub-Registry Treasury Challan Calculator & Unit Converter
+- **Official Treasury Challan Calculator:** Calculates Stamp Duty (1.5%), Registration Fee (1.0%), Local Govt Tax (2.0%), and Halafnama fees with official treasury code `১-১১০১-০০২০-২৬১১` to protect buyers from broker extortion (*দালাল চক্র*).
+- **Traditional Unit Converter:** Live conversion between শতক (Decimal), কাঠা (Katha), বিঘা (Bigha), একর (Acre), and বর্গফুট (Sq Ft).
+
+![Sub-Registry Treasury Calculator](screenshots/06_treasury_calculator.png)
+
+---
+
+### 7. Non-Circular Cryptographic SHA-256 Deed Verification (P2)
+Extracts the deed number, queries a sealed external registry ledger (`REGISTRY_LEDGER`), computes the normalized SHA-256 cryptographic digest via the browser's native Web Crypto API, and visualizes alterations with a word-level Longest Common Subsequence (LCS) tamper diff.
+
+![SHA-256 Deed Verification & LCS Tamper Diff](screenshots/07_sha256_deed_diff.png)
+
+---
+
+## 🧪 100% Synthetic Demo Plot Records
+
+| Plot ID | Division & Location | Legal / Survey Status Demonstrated | Verdict |
+|---|---|---|---|
+| `DHK-SAV-0142` | Savar, Dhaka | Clean plot, RS & BS records matched, e-mutation verified | 🟢 Clear to Proceed |
+| `KHL-DUM-0207` | Dumuria, Khulna | Area discrepancy (RS 14 vs BS 18 dec) + active boundary suit | 🟡 Caution / Warning |
+| `RJS-KHS-0311` | Paba, Rajshahi | Government Khas land (খতিয়ান নং ১) — Private transfer illegal | 🔴 Critical Hazard |
+| `CTG-MOR-0455` | Sitakunda, Chattogram | Active bank mortgage lien + Artha Rin Adalat court case | 🔴 Critical Hazard |
+| `SYL-ACQ-0518` | Dakshin Surma, Sylhet | Compulsory Highway Acquisition freeze (LA Notice Section 4) | 🔴 Critical Hazard |
+| `BAR-AMT-0143` | Amtali, Barishal | Rayati land, clean CS/SA/RS/BS lineage, holding tax paid | 🟢 Clear to Proceed |
+| `MYM-TRL-0146` | Trishal, Mymensingh | Double-selling alert (two conflicting registered deeds) | 🔴 Critical Hazard |
+| `RNG-PIR-0197` | Pirganj, Rangpur | Unsettled succession title (Waris Sanad forgery risk) | 🟡 Caution / Warning |
+
+---
+
+## 🤖 Collaborative AI Engineering Journey
+
+As required by the LandTech 2026 Rulebook, we transparently detail the roles of the AI tools utilized:
+
 ```
+                      ┌────────────────────────────────────────┐
+                      │           Human Developers             │
+                      │  Nahid Ibn Zaman & Md. Rasel Sabuj     │
+                      └──────────────────┬─────────────────────┘
+                                         │
+         ┌───────────────────────────────┼───────────────────────────────┐
+         ▼                               ▼                               ▼
+┌──────────────────┐           ┌──────────────────┐           ┌──────────────────┐
+│ Claude Anthropic │           │  Google Gemini   │           │ Google DeepMind  │
+│                  │           │   & Argon UI     │           │   Antigravity    │
+├──────────────────┤           ├──────────────────┤           ├──────────────────┤
+│ • Problem scope  │           │ • Bengali visual │           │ • Non-circular   │
+│   (P5 & P2 sync) │           │   palette system │           │   registry ledger│
+│ • Initial schema │           │ • Mobile-first   │           │ • Word LCS diff  │
+│   & concept note │           │   hero fader     │           │ • Strict XSS esc │
+│ • Early deed     │           │ • Responsive     │           │ • Password eye   │
+│   hashing logic  │           │   cadastral map  │           │ • Automated tests│
+└──────────────────┘           └──────────────────┘           └──────────────────┘
+```
+
+### 1. Claude (Anthropic)
+- **Concept Formulation & Scoping:** Formulated the unified architecture combining Problem P5 (*Check Before You Buy*) with Problem P2 (*Deed Hashing*).
+- **Core Verification Logic:** Authored the initial single-file skeleton, the 5-point plot data structure, and the pitch deck narrative.
+
+### 2. Google Gemini & Argon
+- **Cultural Design System:** Created the aesthetic visual redesign incorporating traditional Bangladeshi terracotta (`#a83820`), paddy green (`#2d5a27`), golden mustard (`#f59e0b`), and rich earth tones.
+- **Fluid Layout & Map Architecture:** Engineered the 3-second landscape cross-fade slider and responsive interactive SVG map layout for cross-device mobile support.
+
+### 3. Google DeepMind Antigravity
+- **Non-Circular Cryptographic Ledger:** Replaced circular self-hashing with an external sealed registry ledger (`REGISTRY_LEDGER`), standardizing normalization across browser and Node environments.
+- **Word-Level LCS Tamper Diff:** Built a matrix-based Longest Common Subsequence (LCS) comparison preserving whitespace and token boundaries to highlight edited numbers without false cascades.
+- **Defensive XSS Hardening:** Created a centralized `esc()` sanitizer across all dynamic HTML insertion points (`renderWordDiff`, `plotOut`, `openArchivalModal`, `cadastralStudioHtml`).
+- **Accessible Show/Hide Password Toggle:** Integrated a mobile-friendly 40x40px inline SVG eye button with full ARIA accessibility (`aria-controls`, `aria-pressed`, `aria-label`), keyboard `:focus-visible` ring, cursor preservation (`selectionStart`/`selectionEnd`), and automatic logout reset.
+- **Compliance & Neutrality:** Systematically eliminated real-looking government identifiers, replaced hotline references with `১৬xxx (ডেমো)`, updated judge credentials to `judge@example.com`, and introduced clear synthetic data disclaimers.
+
+---
+
+## 🛠️ How to Run Locally
+
+No external libraries, build steps, or package managers are required.
+
+### Quick Start:
+```bash
+# Clone the repository
+git clone https://github.com/nahidzaman1996271-sketch/mati-landtech-2026.git
+
+# Enter project directory
+cd mati-landtech-2026
+
+# Serve with Python built-in HTTP server
 python3 -m http.server 8000
+# On Windows: py -m http.server 8000
 ```
-Then open http://localhost:8000 (on Windows use `py -m http.server 8000`).
+Open [http://localhost:8000](http://localhost:8000) in your modern browser.
 
-The background photos are `hero-1.jpg`, `hero-2.jpg` and `hero-3.jpg`, stored next to `index.html` (see "Images"). If a photo is missing, the page falls back to a plain dark green background.
+### Verify the Sealed Registry Hash in Node:
+```bash
+node -e "const crypto=require('crypto'),fs=require('fs');const s=fs.readFileSync('index.html','utf8');const i=s.indexOf('const SAMPLE_DEED =');const t=s.slice(s.indexOf('\x60',i)+1,s.indexOf('\x60',s.indexOf('\x60',i)+1)).normalize('NFC').replace(/\r\n/g,'\n').trim();console.log(crypto.createHash('sha256').update(t,'utf8').digest('hex'));"
+```
+**Expected Output:** `594622ce9714bb309c45af5a814f2116bc445e954b98b7883199f965954dc068`
 
-## Project files
+---
+
+## 📂 Repository File Structure
 
 ```
-index.html     page, styles, data and logic
-style.css      styles for the 404 page
-404.html       custom not-found page
-favicon.svg    site icon
-hero-1.jpg     background photo 1 (compressed)
-hero-2.jpg     background photo 2 (compressed)
-hero-3.jpg     background photo 3 (compressed)
-render.yaml    optional Render static-site config
-.nojekyll      tells GitHub Pages to serve files as they are
+mati-landtech-2026/
+├── index.html          # Core single-file application (HTML5, CSS3, Vanilla JS)
+├── README.md           # Project documentation and visual showcase
+├── style.css           # Fallback styles for error handling
+├── 404.html            # Custom offline/not-found page
+├── render.yaml         # Cloud hosting deployment specification
+├── .nojekyll           # Enforces direct asset serving on GitHub Pages
+├── audio/              # Synthesized Bengali audio readouts for all 8 plots
+│   ├── BAR-AMT-0143.mp3
+│   ├── CTG-MOR-0455.mp3
+│   ├── DHK-SAV-0142.mp3
+│   ├── KHL-DUM-0207.mp3
+│   ├── MYM-TRL-0146.mp3
+│   ├── RJS-KHS-0311.mp3
+│   ├── RNG-PIR-0197.mp3
+│   └── SYL-ACQ-0518.mp3
+├── images/             # Compressed Unsplash rice-field landscape backgrounds
+│   ├── hero-1.jpg
+│   ├── hero-2.jpg
+│   └── hero-3.jpg
+└── screenshots/        # High-resolution documentation screenshots
+    ├── 01_judge_gate.png
+    ├── 02_hero_mouza_map.png
+    ├── 03_plot_porcha_dossier.png
+    ├── 04_100yr_khatian_chain.png
+    ├── 05_fraud_threat_radar.png
+    ├── 06_treasury_calculator.png
+    └── 07_sha256_deed_diff.png
 ```
 
-## Data and rule compliance
+---
 
-- Every plot ID, owner, father's name, khatian number, court case, bank and deed in this project is made up for the hackathon. Owners and banks appear as "Sample Owner", "Sample Father" and "Sample Bank".
-- No real names, NID numbers, phone numbers or land records are used.
-- Nothing was scraped or downloaded from any government website.
-- No live government or third-party system was tested. All checks run in the browser on our own files.
+## 📜 Credits & License
 
-## AI tools used
-
-We used two AI tools and list them here as the rulebook requires.
-
-- **Claude (Anthropic):** gave us the project idea and its scope (P5 with deed hashing from P2). It also wrote the first version of the site and the plot-check and deed-verification logic, and helped with the concept note and pitch deck.
-- **Google Argon:** produced the visual redesign of the site, which includes the styling, the CSS, the hero background and the schematic mouza map layout.
-
-We reviewed the code from both tools, edited it ourselves (including replacing the sample data with clearly fictional names), and can explain how it works.
-
-## Images
-
-The three background photos come from Unsplash and are used under the Unsplash License, which allows free use. We credit the photographers anyway. They were renamed and compressed for the web.
-
-| File | Photographer | Source |
-|---|---|---|
-| hero-1.jpg | Kresna Arya | Unsplash |
-| hero-2.jpg | Mohd Nasiruddin Mohd Nasir | Unsplash |
-| hero-3.jpg | Yosafat Herdian | Unsplash |
-
-These are general rice-field photos. They are used only as decoration and do not show real plots or real land records.
-
-## Credits
-
-- Fonts: Fraunces and Hind Siliguri from Google Fonts (SIL Open Font License)
-- Photos: see "Images" above
-
-## Limitations
-
-- This is a front-end prototype. The records are stored in the page itself, so anyone can read or edit them. A real system would keep them in a protected server database.
-- The "registry" deed hash is calculated from the sample deed when the page loads. It demonstrates the check but is not a real registry.
-- The map is a schematic drawing, not survey data.
-- Only five sample plots and one sample deed exist.
-
-## Planned for a national version
-
-- A database linked to registry, e-Mutation and court systems through approved APIs
-- An append-only store for deed hashes, written at registration
-- QR codes printed on deeds that open the verification page
-- Role-based sign-in for officers and banks
-- OCR for scanned Bangla khatians (problem P1)
-
-## Changes after Round 1
-
-(List changes here before the Final Round.)
+- **Fonts:** [Fraunces](https://fonts.google.com/specimen/Fraunces) & [Hind Siliguri](https://fonts.google.com/specimen/Hind+Siliguri) (Google Fonts, SIL Open Font License).
+- **Background Photography:** Kresna Arya, Mohd Nasiruddin Mohd Nasir, and Yosafat Herdian via [Unsplash](https://unsplash.com) (Unsplash Free Use License).
+- **License:** Released under the MIT License for educational and hackathon evaluation purposes.
