@@ -21,6 +21,7 @@
   - **Md. Rasel Hasan Sabuj**
 - **Mentors:** Rubayed All Islam (Faculty), Md Jannatul Nayem (Industry)
 - **Live Prototype:** [https://nahidzaman1996271-sketch.github.io/mati-landtech-2026/](https://nahidzaman1996271-sketch.github.io/mati-landtech-2026/)
+- **Youtube video:**
 
 > [!NOTE]
 > **Data & Rule Compliance:** All data in this repository is 100% synthetic dummy data created strictly for hackathon demonstration. All owner identities use non-human synthetic tokens (e.g. `Demo Citizen A [DUMMY-ID-01]`, `Demo Seller X [DUMMY-SELLER-01]`) per Rulebook Section 10. No real citizen data, NID, or government databases were accessed.
